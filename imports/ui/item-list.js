@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import Header from './Header';
-import Loading from './Loading';
+import Loading from './loading';
 
 const App = ({ data }) => {
   const { items, refetch, loading } = data
