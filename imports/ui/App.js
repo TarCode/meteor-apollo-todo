@@ -7,45 +7,37 @@ import Header from './Header';
 import Loading from './Loading';
 import LoginForm from './LoginForm';
 
-const App = ({ currentUser, refetch, userLoading }) => (
+const App = ({ items, refetch, loading }) => (
   <div className="App">
     <Header/>
     <div className="App-block">
-      {userLoading
+      {loading
         ? <Loading />
         : <div className="App-content">
             <LoginForm />
-            {currentUser
-              ? <div>
-                  <pre>{JSON.stringify(currentUser, null, 2)}</pre>
-                  <button onClick={() => refetch()}>Refetch the query!</button>
-                </div>
-              : 'Please log in!'}
+            {
+              items && items.length > 0 ?
+              items.map((i, index) => (
+                <p key={index}>{i.text}</p>
+              )) :
+              <p>No items yet</p>
+            }
           </div>}
     </div>
 
   </div>
 )
-App.propTypes = {
-  currentUser: PropTypes.object,
-  hasErrors: PropTypes.bool,
-  refetch: PropTypes.func,
-  userLoading: PropTypes.bool,
-};
+
 
 /*
  * We use `gql` from graphql-tag to parse GraphQL query strings into the standard GraphQL AST
  * See for more information: https://github.com/apollographql/graphql-tag
  */
 const GET_USER_DATA = gql`
-  query getCurrentUser {
-    user {
-      emails {
-        address
-        verified
-      }
-      randomString
+  query getItems {
+    items {
       _id
+      text
     }
   }
 `;
@@ -56,12 +48,12 @@ const GET_USER_DATA = gql`
  */
 const withData = graphql(GET_USER_DATA, {
   // destructure the default props to more explicit ones
-  props: ({ data: { error, loading, user, refetch } }) => {
-    if (loading) return { userLoading: true };
+  props: ({ data: { error, loading, items, refetch } }) => {
+    if (loading) return { loading: true };
     if (error) return { hasErrors: true };
 
     return {
-      currentUser: user,
+      items: items,
       refetch,
     };
   },
