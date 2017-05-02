@@ -1,5 +1,5 @@
 {
-  "name": "meteor-starter-kit",
+  "name": "meteor-apollo-todo",
   "private": true,
   "scripts": {
     "start": "meteor run",
