@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-
-import Header from './Header';
 import Loading from './loading';
 
 const App = ({ data }) => {

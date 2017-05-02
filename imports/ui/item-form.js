@@ -13,15 +13,33 @@ class ItemForm extends React.Component {
     const { submit } = this.props
     return (
       <div>
-        <input type='text' value={this.state.text} onChange={(e) => {
-          this.state.text = e.target.value
-          this.setState(this.state)
-        }}/>
-        <button type="button" className='btn btn-block' onClick={() => {
-          submit({text: this.state.text})
-          this.state.text = ""
-          this.setState(this.state)
-        }}>Submit</button>
+        <div className='row'>
+          <div className='col s12'>
+            <input placeholder="Type an item to add to the list" type='text' value={this.state.text} onChange={(e) => {
+              this.state.text = e.target.value
+              this.setState(this.state)
+            }}/>
+          </div>
+        </div>
+        {
+          this.state.text.length > 0 ?
+          <div className='row'>
+            <div className='col s6'>
+              <a type="button" className='green btn btn-block' onClick={() => {
+                submit({text: this.state.text})
+                this.state.text = ""
+                this.setState(this.state)
+              }}>Submit</a>
+            </div>
+            <div className='col s6'>
+              <a type="button" className='red btn btn-block' onClick={() => {
+                this.state.text = ""
+                this.setState(this.state)
+              }}>Cancel</a>
+            </div>
+          </div> :
+          null
+        }
       </div>
     )
   }
@@ -38,7 +56,6 @@ const addItem = gql`
 export default graphql(addItem, {
   props: ({ ownProps, mutate }) => ({
     submit: ({ text }) => {
-      console.log('submit text', text);
       mutate({
         variables: { text },
           refetchQueries: [{
@@ -52,7 +69,7 @@ export default graphql(addItem, {
             `
           }]
       })
-
+      sweetAlert("Item Added!");
     },
   }),
 })(ItemForm);
