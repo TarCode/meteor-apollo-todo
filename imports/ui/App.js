@@ -9,9 +9,7 @@ import LoginForm from './LoginForm';
 
 const App = ({ currentUser, refetch, userLoading }) => (
   <div className="App">
-
-    <Header />
-
+    <Header/>
     <div className="App-block">
       {userLoading
         ? <Loading />
@@ -27,8 +25,7 @@ const App = ({ currentUser, refetch, userLoading }) => (
     </div>
 
   </div>
-);
-
+)
 App.propTypes = {
   currentUser: PropTypes.object,
   hasErrors: PropTypes.bool,

@@ -22,4 +22,5 @@ static-html
 std:accounts-ui
 
 apollo
-muicss:mui
+materialize:materialize
+simonhochrein:material-icons
