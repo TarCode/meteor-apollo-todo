@@ -6,7 +6,7 @@ import ApolloClient from 'apollo-client';
 import { meteorClientConfig } from 'meteor/apollo';
 import { ApolloProvider } from 'react-apollo';
 
-import App from '/imports/ui/App';
+import { App } from '/imports/ui/App';
 
 const client = new ApolloClient(meteorClientConfig());
 

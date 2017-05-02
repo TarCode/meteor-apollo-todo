@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-class ListItemHolder extends React.Component {
+class ItemForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -55,4 +55,4 @@ export default graphql(addItem, {
 
     },
   }),
-})(ListItemHolder);
+})(ItemForm);
