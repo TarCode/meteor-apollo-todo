@@ -12,7 +12,8 @@ type Query {
 }
 
 type Mutation {
-  addItem(text: String!): Item
+  addItem(text: String!): Item,
+  removeItem(_id: String!): Item
 }
 `,
 ];
@@ -25,10 +26,11 @@ export const resolvers = {
   },
   Mutation: {
    addItem: (root, args) => {
-     const data = { text: args.text };
-     const itemId = Items.insert(data)
-     console.log('args from addItem mutation', itemId);
+     const itemId = Items.insert({ text: args.text })
      return Items.findOne(itemId)
    },
+   removeItem: (root, args) => {
+     return Items.remove({ _id: args._id })
+   }
  }
 };

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Loading from './loading';
+import Item from './item'
 
 const App = ({ data }) => {
   const { items, refetch, loading } = data
@@ -14,7 +15,7 @@ const App = ({ data }) => {
             {
               items && items.length > 0 ?
               items.map((i, index) => (
-                <li key={index} className='collection-item'>{i.text}</li>
+                <Item key={index} text={i.text} _id={i._id}/>
               )) :
               <li className='collection-item'>No items yet</li>
             }

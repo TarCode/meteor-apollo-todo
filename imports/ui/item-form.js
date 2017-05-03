@@ -52,7 +52,7 @@ const addItem = gql`
   }
 }
 `;
-//
+
 export default graphql(addItem, {
   props: ({ ownProps, mutate }) => ({
     submit: ({ text }) => {
