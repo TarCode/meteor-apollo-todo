@@ -70,7 +70,6 @@ export default graphql(addItem, {
           }]
       })
       .then(({ data }) => {
-        console.log('data from add', data);
         sweetAlert(data.addItem.text + " Added!");
       })
       .catch(err => {

@@ -39,7 +39,6 @@ export default graphql(removeItem, {
           }]
       })
       .then(({ data }) => {
-        console.log('data from remove ', data);
         sweetAlert("Item removed!")
       })
       .catch(err => {
