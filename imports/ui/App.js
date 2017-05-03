@@ -5,16 +5,13 @@ import gql from 'graphql-tag'
 
 import Header from './header'
 import Loading from './loading'
-import ItemForm from './item-form'
-import ItemList from './item-list'
 
-export const App = () => {
+export const App = (props) => {
   return (
    <div className="App">
      <Header/>
      <div className="container">
-       <ItemForm/>
-       <ItemList/>
+       { props.children }
      </div>
    </div>
  )

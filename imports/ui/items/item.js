@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Loading from './loading';
+import Loading from '../loading';
 
 const Item = ({ _id, text, remove }) => {
   return (
@@ -38,7 +38,13 @@ export default graphql(removeItem, {
             `
           }]
       })
-      sweetAlert("Item removed!");
+      .then(({ data }) => {
+        console.log('data from remove ', data);
+        sweetAlert("Item removed!")
+      })
+      .catch(err => {
+        console.log(err)
+      })
     },
   }),
 })(Item);

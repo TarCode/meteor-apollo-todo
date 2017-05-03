@@ -69,7 +69,13 @@ export default graphql(addItem, {
             `
           }]
       })
-      sweetAlert("Item Added!");
+      .then(({ data }) => {
+        console.log('data from add', data);
+        sweetAlert(data.addItem.text + " Added!");
+      })
+      .catch(err => {
+        console.log(err);
+      })
     },
   }),
 })(ItemForm);

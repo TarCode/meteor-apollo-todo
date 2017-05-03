@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Loading from './loading';
+import Loading from '../loading';
 import Item from './item'
 
 const App = ({ data }) => {
